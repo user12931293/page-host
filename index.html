@@ -40,18 +40,10 @@
             padding: 1rem 2rem;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #000;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo::before {
-            content: "Z³";
+        .logo-img {
+            height: 50px; /* Increased from 40px */
+            width: auto;
             margin-right: 10px;
-            font-size: 2rem;
         }
 
         .nav-links {
@@ -170,112 +162,151 @@
             color: #1a1a1a;
         }
 
-        /* Team Section */
-        .team-photo {
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            background: linear-gradient(45deg, #f8f8f8, #e0e0e0);
-            border-radius: 20px;
-            margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #666;
+        /* Team Section - Improved Layout */
+        .team-slideshow-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            height: 450px; /* Taller than practice slideshow for better portraits */
+            margin-bottom: 2rem;
+        }
+
+        .team-slideshow-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .team-slides-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            animation: teamSlideLeft 35s linear infinite;
+        }
+
+        .team-slide {
+            flex: 0 0 350px; /* Wider than practice slides for portraits */
+            height: 100%;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+
+        .team-slide:hover {
+            transform: scale(1.02);
+        }
+
+        .team-slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
             transition: transform 0.3s ease;
         }
 
-        .team-photo:hover {
-            transform: scale(1.02);
+        .team-slide:hover .team-slide-img {
+            transform: scale(1.05);
+        }
+
+        @keyframes teamSlideLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-2350px); /* Adjusted for team slides */
+            }
+        }
+
+        /* Remove fade effect for team slideshow */
+        .team-slideshow-container::before,
+        .team-slideshow-container::after {
+            display: none; /* Completely remove the side fades */
         }
 
         .team-description {
             text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .team-description strong {
+            font-weight: 700;
+            color: #000;
         }
 
         /* Practice Section */
         .slideshow-container {
             position: relative;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            height: 380px;
+        }
+
+        .slideshow-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            animation: slideLeft 30s linear infinite;
         }
 
         .slide {
+            flex: 0 0 320px;
+            height: 100%;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .slide img {
             width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #1976d2;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
         }
 
-        .slide.active {
-            display: flex;
+        .slide:hover img {
+            transform: scale(1.05);
         }
 
-        .slide:nth-child(1) { background: linear-gradient(45deg, #f5f5f5, #e0e0e0); }
-        .slide:nth-child(2) { background: linear-gradient(45deg, #f0f0f0, #d5d5d5); }
-        .slide:nth-child(3) { background: linear-gradient(45deg, #f8f8f8, #e5e5e5); }
-
-        .slideshow-nav {
-            text-align: center;
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-1700px); /* Adjusted for wider slides */
+            }
         }
 
-        .nav-button {
-            background: #333;
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-button:hover {
-            background: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .dots-container {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            background-color: #ccc;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active, .dot:hover {
-            background-color: #333;
-            transform: scale(1.2);
+        /* Remove fade effect for practice slideshow */
+        .slideshow-container::before,
+        .slideshow-container::after {
+            display: none; /* Completely remove the side fades */
         }
 
         /* Job Cards */
@@ -397,7 +428,7 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
-        /* Contact Section */
+        /* Contact Section - Updated for single column layout */
         .contact-section {
             background: #1a1a1a;
             color: white;
@@ -418,17 +449,10 @@
         }
 
         .contact-container {
-            max-width: 1200px;
+            max-width: 800px; /* Reduced max-width for better centered appearance */
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .contact-content {
-            z-index: 2;
             position: relative;
+            z-index: 2;
         }
 
         .contact-title {
@@ -436,6 +460,7 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            text-align: center;
         }
 
         .contact-subtitle {
@@ -443,6 +468,7 @@
             color: #ccc;
             margin-bottom: 2rem;
             line-height: 1.5;
+            text-align: center;
         }
 
         .contact-details {
@@ -488,7 +514,16 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-message {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
         }
 
         .contact-info-item {
@@ -539,81 +574,6 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .contact-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .contact-image {
-            width: 400px;
-            height: 500px;
-            background: linear-gradient(135deg, #333, #666);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #ccc;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-        }
-
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 60px;
-            height: 60px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 40px;
-            height: 40px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
         @media (max-width: 768px) {
             .contact-container {
                 grid-template-columns: 1fr;
@@ -627,11 +587,6 @@
             
             .contact-info-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .contact-image {
-                width: 300px;
-                height: 400px;
             }
             
             .contact-buttons {
@@ -669,13 +624,284 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Updated Jobs Section Styles */
+        .headline-banner {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .headline-banner h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .small-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .why-join {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .why-join h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .heart-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .heart-list li {
+            display: flex;
+            align-items: center;
+            width: calc(33.333% - 1rem);
+            font-size: 1.1rem;
+            padding: 0.5rem;
+        }
+        
+        .heart-icon {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .closing-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 2rem 0;
+        }
+        
+        /* Updated Jobs Container Styles - More Compact */
+        .jobs-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: space-between;
+        }
+        
+        .job-listing {
+            flex: 1 1 calc(33.333% - 1rem);
+            min-width: 280px;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid #e0e0e0;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .job-listing:hover {
+            border-color: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .job-listing.selected {
+            border-color: #333;
+            background: #f8f9fa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .job-listing.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .job-listing h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        
+        .job-listing p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            line-height: 1.4;
+        }
+        
+        /* Circular Progress Bar Styles */
+        .application-progress {
+            margin: 2rem 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .progress-label {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .circular-progress {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        
+        .circular-progress svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .circular-progress .progress-circle-bg {
+            fill: none;
+            stroke: #e0e0e0;
+            stroke-width: 8;
+        }
+        
+        .circular-progress .progress-circle {
+            fill: none;
+            stroke: #000000;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 314.16; /* 2 * PI * 50 (radius) */
+            stroke-dashoffset: 314.16;
+            transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s ease;
+        }
+        
+        .circular-progress.updated {
+            animation: pulse 0.6s ease-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .progress-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .progress-text {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Continue Button */
+        .continue-button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .continue-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .continue-btn:hover {
+            background: #000;
+            transform: translateY(-1px);
+        }
+
+        /* Job Details - Compact View */
+        .job-details {
+            margin: 2rem 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .job-detail-section {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .job-detail-section:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-toggle {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .toggle-icon {
+            font-weight: bold;
+        }
+        
+        .detail-content {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+        
+        .detail-toggle.active + .detail-content {
+            display: block;
+        }
+        
+        .job-location {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .heart-list li {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <div class="logo">Zhochdrei</div>
+            <div class="logo">
+                <img src="logo.svg" alt="Zhochdrei Logo" class="logo-img">
+            </div>
             <ul class="nav-links">
                 <li><a href="#team">Unser Team</a></li>
                 <li><a href="#praxis">Unsere Praxis</a></li>
@@ -698,159 +924,209 @@
     <!-- Team Section -->
     <section id="team" class="section fade-in">
         <h2 class="section-title">Unser Team</h2>
-        <div class="team-photo">
-            [Team Foto Platzhalter - Professionelles Teamfoto hier einfügen]
+        <div class="team-slideshow-container">
+            <div class="team-slideshow-track">
+                <div class="team-slides-wrapper">
+                    <div class="team-slide">
+                        <img src="1.jpg" alt="Dr. Marco Zapf - Zahnarzt & Praxisinhaber" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="2.jpg" alt="Dr. Jasmin Höfer - Zahnärztin" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="3.jpg" alt="Sabine Müller - ZFA & Praxismanagement" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="4.jpg" alt="Julia Weber - Dentalhygienikerin" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="5.jpg" alt="Thomas Schulz - ZFA" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="6.jpg" alt="Mira Klein - ZMP" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="7.jpg" alt="Anna Becker - Empfang & Administration" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="8.jpg" alt="Lisa Schmidt - Auszubildende ZFA" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="9.jpg" alt="Michael Wagner - Zahntechniker" class="team-slide-img">
+                    </div>
+                    <!-- Duplicate slides for seamless loop -->
+                    <div class="team-slide">
+                        <img src="1.jpg" alt="Dr. Marco Zapf - Zahnarzt & Praxisinhaber" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="2.jpg" alt="Dr. Jasmin Höfer - Zahnärztin" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="3.jpg" alt="Sabine Müller - ZFA & Praxismanagement" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="4.jpg" alt="Julia Weber - Dentalhygienikerin" class="team-slide-img">
+                    </div>
+                    <div class="team-slide">
+                        <img src="5.jpg" alt="Thomas Schulz - ZFA" class="team-slide-img">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="team-description">
-            <p>Bei zhochdrei arbeiten Sie mit einem herzlichen und kompetenten Team zusammen. Unsere Philosophie basiert auf Vertrauen, Respekt und der gemeinsamen Leidenschaft für moderne Zahnmedizin auf höchstem Niveau.</p>
+            <p>Bei zhochdrei arbeitest du mit einem <strong>herzlichen und kompetenten Team</strong>. Unsere Philosophie: <strong>Vertrauen, Respekt und Leidenschaft</strong> für moderne Zahnmedizin auf höchstem Niveau.</p>
         </div>
     </section>
-
-    <!-- Practice Section -->
-    <section id="praxis" class="section fade-in">
-        <h2 class="section-title">Unsere Praxis</h2>
-        <div class="slideshow-container">
-            <div class="slides-wrapper">
-                <div class="slide active">
-                    <div class="slide-overlay">
-                        <div class="slide-title">Moderne Behandlungsräume</div>
-                        <div class="slide-description">Neueste Technologie für präzise und schonende Behandlungen</div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide-overlay">
-                        <div class="slide-title">Entspannte Atmosphäre</div>
-                        <div class="slide-description">Wohlfühlambiente für Patienten und unser Team</div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide-overlay">
-                        <div class="slide-title">Digitale Ausstattung</div>
-                        <div class="slide-description">Modernste digitale Workflows auf höchstem Niveau</div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide-overlay">
-                        <div class="slide-title">Unser Team</div>
-                        <div class="slide-description">Familiäres Miteinander im modernen Wartezimmer</div>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide-overlay">
-                        <div class="slide-title">Zentrum für Zahnmedizin</div>
-                        <div class="slide-description">Ihr Partner für moderne Zahnmedizin in Spardorf</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slideshow-nav">
-            <button class="nav-button" onclick="changeSlide(-1)">‹</button>
-            <div class="dots-container">
-                <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-            </div>
-            <button class="nav-button" onclick="changeSlide(1)">›</button>
-        </div>
-    </section>
-
-    <!-- Culture Section -->
-    <section id="karriere" class="section fade-in">
-        <h2 class="section-title">Warum zhochdrei?</h2>
-        <div class="culture-grid">
-            <div class="culture-item">
-                <span class="culture-icon">🚀</span>
-                <h3 class="culture-title">Innovation</h3>
-                <p>Arbeiten Sie mit modernster Technologie und digitalen Workflows</p>
-            </div>
-            <div class="culture-item">
-                <span class="culture-icon">❤️</span>
-                <h3 class="culture-title">Herzlichkeit</h3>
-                <p>Ein Team, das sich gegenseitig unterstützt und wertschätzt</p>
-            </div>
-            <div class="culture-item">
-                <span class="culture-icon">📈</span>
-                <h3 class="culture-title">Entwicklung</h3>
-                <p>Kontinuierliche Weiterbildung und persönliche Entwicklung</p>
-            </div>
-            <div class="culture-item">
-                <span class="culture-icon">🏡</span>
-                <h3 class="culture-title">Familiäres Umfeld</h3>
-                <p>Regelmäßige Teamevents, gemeinsame Essen und eine echte Arbeitsgemeinschaft</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
+    
+    <!-- Benefits Section - Updated content -->
     <section id="benefits" class="section fade-in">
-        <h2 class="section-title">Ihre Benefits</h2>
+        <h2 class="section-title">Deine Benefits</h2>
         <div class="benefits-grid">
             <div class="benefit-card">
-                <h3>💰 Attraktive Vergütung</h3>
-                <p>Überdurchschnittliches Gehalt mit leistungsgerechten Zulagen und regelmäßigen Gehaltsanpassungen</p>
+                <h3>🏥 Top modernes Arbeitsumfeld</h3>
+                <p>Arbeite in einer technologisch fortschrittlichen Praxis mit neuester digitaler Ausstattung und ergonomischen Arbeitsplätzen</p>
             </div>
             <div class="benefit-card">
-                <h3>🎓 Weiterbildung</h3>
-                <p>Umfangreiche Fortbildungsmöglichkeiten und Unterstützung bei beruflicher Entwicklung</p>
+                <h3>👥 Teamkultur, die Spaß macht</h3>
+                <p>Genieße eine positive Arbeitsatmosphäre mit kollegialer Unterstützung und wertschätzendem Miteinander</p>
             </div>
             <div class="benefit-card">
-                <h3>🏥 Moderne Ausstattung</h3>
-                <p>Arbeiten Sie in einer top-modernen Praxis mit neuester digitaler Technologie</p>
+                <h3>💰 Attraktive Vergütung und Extras</h3>
+                <p>Überdurchschnittliches Gehalt mit leistungsgerechten Zulagen, Bonusprogrammen und zusätzlichen Leistungen</p>
             </div>
             <div class="benefit-card">
-                <h3>👥 Tolles Team</h3>
-                <p>Kollegiales Arbeitsklima mit zwei wirklich netten Chefs mit Herz</p>
+                <h3>🎓 Individuelle Förderung</h3>
+                <p>Persönliche Entwicklungsmöglichkeiten durch maßgeschneiderte Weiterbildungen und Schulungen</p>
             </div>
             <div class="benefit-card">
-                <h3>⏰ Flexible Zeiten</h3>
-                <p>Teil- und Vollzeitmodelle möglich, Work-Life-Balance wird großgeschrieben</p>
+                <h3>🎉 Regelmäßige Teamevents</h3>
+                <p>Stärke den Zusammenhalt durch gemeinsame Aktivitäten, Feiern und Teambuilding-Maßnahmen</p>
             </div>
             <div class="benefit-card">
-                <h3>🍕 Teamevents & Zusammenhalt</h3>
-                <p>Regelmäßige gemeinsame Aktivitäten, Teamabende und ein familiäres Miteinander, das über die Arbeitszeit hinausgeht</p>
-            </div>
-        </div>
-    </section>
+                <h3>⏰ Flexible Arbeitszeiten</h3>
+                <p>Work-Life-Balance durch anpassbare Arbeitszeitmodelle und familienfreundliche Planungsmöglichkeiten</p>
+            </div>    
+        </section>    
+        
+            <!-- Practice Section -->
+            <section id="praxis" class="section fade-in">
+                <h2 class="section-title">Unsere Praxis</h2>
+                <div class="slideshow-container">
+                    <div class="slideshow-track">
+                        <div class="slides-wrapper">
+                            <div class="slide">
+                                <img src="p1.jpg" alt="Moderne Behandlungsräume mit neuester Technologie">
+                            </div>
+                            <div class="slide">
+                                <img src="p2.jpg" alt="Entspannte Atmosphäre für Patienten und Team">
+                            </div>
+                            <div class="slide">
+                                <img src="p3.jpg" alt="Digitale Ausstattung auf höchstem Niveau">
+                            </div>
+                            <div class="slide">
+                                <img src="p4.jpg" alt="Professionelle Behandlungseinrichtung">
+                            </div>
+                            <div class="slide">
+                                <img src="p5.jpg" alt="Moderne Praxisausstattung">
+                            </div>
+                            <!-- Duplicate slides for seamless loop -->
+                            <div class="slide">
+                                <img src="p1.jpg" alt="Moderne Behandlungsräume mit neuester Technologie">
+                            </div>
+                            <div class="slide">
+                                <img src="p2.jpg" alt="Entspannte Atmosphäre für Patienten und Team">
+                            </div>
+                            <div class="slide">
+                                <img src="p3.jpg" alt="Digitale Ausstattung auf höchstem Niveau">
+                            </div>
+                            <div class="slide">
+                                <img src="p4.jpg" alt="Professionelle Behandlungseinrichtung">
+                            </div>
+                            <div class="slide">
+                                <img src="p5.jpg" alt="Moderne Praxisausstattung">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Jobs Section -->
+    </div>    
+        
+    <!-- Jobs Section - Updated to be more compact with progress bar -->
     <section id="stellen" class="section fade-in">
-        <h2 class="section-title">Offene Stellen</h2>
-        <div class="jobs-grid">
-            <div class="job-card">
-                <h3 class="job-title">ZFA (m/w/d)</h3>
-                <p class="job-subtitle">Verstärke unser herzliches Team als Zahnmedizinische:r Fachangestellte:r</p>
-                <span class="job-type">Vollzeit / Teilzeit</span>
-                <p>Als ZFA sind Sie das Herzstück unserer Praxis und unterstützen unsere Zahnärzte bei allen Behandlungen. Wir bieten Ihnen einen abwechslungsreichen Arbeitsplatz in familiärer Atmosphäre.</p>
-                <button class="apply-btn">Jetzt bewerben</button>
-            </div>
+        <h2 class="section-title">Hier findest du unsere offenen Stellen</h2>
+        
+        <div class="headline-banner">
+            <h3>WIR SUCHEN AB SOFORT EINE<br>ZFA, ZMP, DH <span class="small-text">(m/w/d)</span> IN TEIL- BZW. VOLLZEIT</h3>
+        </div>    
+                <div class="job-location">
+            <p>Spardorf | Full-time or part-time</p>        
+        </div>    
+        <div class="application-progress">
+            <div class="progress-label">Bewerbungsprozess</div>
+            <div class="circular-progress">
+                <svg viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="50" class="progress-circle-bg"></circle>
+                    <circle cx="60" cy="60" r="50" class="progress-circle" id="progress-circle"></circle>
+                </svg>    
+                <div class="progress-percentage" id="progress-percentage">0%</div>
+            </div>    
+        </div>    
+        <div class="jobs-container">
+            <div class="job-listing zfa" data-job="zfa">
+                <h3>ZFA</h3>
+                <p>Verstärke unser herzliches Team als Zahnmedizinische:r Fachangestellte:r (m/w/d)</p>
+            </div>    
             
-            <div class="job-card">
-                <h3 class="job-title">ZMP (m/w/d)</h3>
-                <p class="job-subtitle">Als Zahnmedizinische Prophylaxeassistenz sind Sie Expert:in für Prävention</p>
-                <span class="job-type">Vollzeit / Teilzeit</span>
-                <p>Setzen Sie Ihr Können in einem modernen, digitalen Praxisumfeld ein und helfen Sie unseren Patienten dabei, ihre Zahngesundheit optimal zu erhalten.</p>
-                <button class="apply-btn">Jetzt bewerben</button>
-            </div>
+            <div class="job-listing zmp" data-job="zmp">
+                <h3>ZMP</h3>
+                <p>Als Zahnmedizinische Prophylaxeassistenz (ZMP) (m/w/d) bist du Expert:in für Prävention</p>
+            </div>    
             
-            <div class="job-card">
-                <h3 class="job-title">Dentalhygieniker:in (m/w/d)</h3>
-                <p class="job-subtitle">Erfahrene Fachkraft für unsere moderne Praxis in Spardorf</p>
-                <span class="job-type">Vollzeit / Teilzeit</span>
-                <p>In unserer digital geführten Praxis suchen wir eine erfahrene Dentalhygienikerin für anspruchsvolle Prophylaxe-Behandlungen auf höchstem Niveau.</p>
-                <button class="apply-btn">Jetzt bewerben</button>
-            </div>
-        </div>
-    </section>
+            <div class="job-listing dh" data-job="dh">
+                <h3>DH</h3>
+                <p>Dentalhygieniker:in (m/w/d) für anspruchsvolle Prophylaxe in moderner Praxis</p>
+            </div>    
+        </div>    
+        
+        
+        <div class="job-details">
+            <div class="job-detail-section">
+                <h4 class="detail-toggle">Deine Aufgaben <span class="toggle-icon">+</span></h4>
+                <div class="detail-content">
+                    <p>Hier kommen die Aufgabenbeschreibungen für die verschiedenen Positionen.</p>
+                </div>    
+            </div>    
+            
+            <div class="job-detail-section">
+                <h4 class="detail-toggle">Das bieten wir dir <span class="toggle-icon">+</span></h4>
+                <div class="detail-content">
+                    <p>Hier kommen die Vorteile und Angebote für Mitarbeiter.</p>
+                </div>    
+            </div>    
+            
+            <div class="job-detail-section">
+                <h4 class="detail-toggle">Das bringst du mit <span class="toggle-icon">+</span></h4>
+                <div class="detail-content">
+                    <p>Hier kommen die Anforderungen und Qualifikationen.</p>
+                </div>    
+            </div>    
+        </div>    
+        
+        <div class="continue-button-container">
+            <button class="continue-btn">Weiter</button>
+        </div>    
+        
 
-    <!-- Contact Section -->
+    </section>        
+
+    <!-- Contact Section - Removed visual placeholder -->
     <section class="contact-section">
         <div class="contact-container">
             <div class="contact-content">
                 <h2 class="contact-title">Bereit für den nächsten Schritt?</h2>
-                <p class="contact-subtitle">Werden Sie Teil unseres außergewöhnlichen Teams und gestalten Sie die Zukunft der modernen Zahnmedizin mit uns.</p>
-                
+                <p class="contact-subtitle">Werde Teil unseres außergewöhnlichen Teams und gestalte die Zukunft der modernen Zahnmedizin mit uns.</p>
+
                 <div class="contact-details">
                     <div class="contact-person">
                         <div class="contact-person-avatar">MZ</div>
@@ -886,6 +1162,8 @@
                             <span>91080 Spardorf</span>
                         </div>
                     </div>
+
+                    <p class="contact-message">Wir freuen uns darauf, dich kennenzulernen! Sende uns deine Bewerbungsunterlagen oder nimm direkt Kontakt mit uns auf.</p>
                 </div>
                 
                 <div class="contact-buttons">
@@ -897,79 +1175,37 @@
                     </a>
                 </div>
             </div>
-            
-            <div class="contact-visual">
-                <div class="contact-image">
-                    [Professionelles Foto von Dr. Zapf und Team]
-                    <div class="floating-elements">
-                        <div class="floating-element"></div>
-                        <div class="floating-element"></div>
-                        <div class="floating-element"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> Sie kennenzulernen! Senden Sie uns Ihre Bewerbungsunterlagen oder nehmen Sie direkt Kontakt mit uns auf.</p>
-            <p><strong>Dr. med. dent. Marco Zapf M.Sc.</strong><br>
-            Zentrum für Zahnmedizin Alte Ziegelei<br>
-            Alte Ziegelei 2b, 91080 Spardorf<br>
-            Tel: 09131 / 99 699 48<br>
-            info@zhochdrei.de</p>
-            <a href="mailto:info@zhochdrei.de" class="contact-button">Kontakt aufnehmen</a>
         </div>
     </section>
 
     <script>
-        // Slideshow functionality
-        let slideIndex = 1;
-        let slideInterval;
+        // Continuous slideshow functionality
+        let slideshowPaused = false;
+        let slideshowWrapper = null;
         
-        function currentSlide(n) {
-            clearInterval(slideInterval);
-            showSlides(slideIndex = n);
-            startAutoSlide();
-        }
-        
-        function changeSlide(n) {
-            clearInterval(slideInterval);
-            showSlides(slideIndex += n);
-            startAutoSlide();
-        }
-        
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("slide");
-            let dots = document.getElementsByClassName("dot");
+        // Initialize slideshow
+        document.addEventListener('DOMContentLoaded', function() {
+            slideshowWrapper = document.querySelector('.slides-wrapper');
             
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            
-            // Remove all active classes
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active", "prev");
+            // Add hover pause functionality
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            slideshowContainer.addEventListener('mouseenter', pauseSlideshow);
+            slideshowContainer.addEventListener('mouseleave', resumeSlideshow);
+        });
+        
+        function pauseSlideshow() {
+            if (slideshowWrapper) {
+                slideshowWrapper.style.animationPlayState = 'paused';
+                slideshowPaused = true;
             }
-            
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
+        }
+        
+        function resumeSlideshow() {
+            if (slideshowWrapper && slideshowPaused) {
+                slideshowWrapper.style.animationPlayState = 'running';
+                slideshowPaused = false;
             }
-            
-            // Set previous slide
-            let prevIndex = slideIndex === 1 ? slides.length : slideIndex - 1;
-            slides[prevIndex - 1].classList.add("prev");
-            
-            // Set active slide and dot
-            slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
         }
-        
-        function startAutoSlide() {
-            slideInterval = setInterval(() => {
-                slideIndex++;
-                showSlides(slideIndex);
-            }, 5000);
-        }
-        
-        // Start auto slideshow
-        startAutoSlide();
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1019,6 +1255,96 @@
             } else {
                 nav.style.background = 'rgba(255, 255, 255, 0.95)';
                 nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Team slideshow functionality
+        let teamSlideshowWrapper = null;
+        let teamSlideshowPaused = false;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            teamSlideshowWrapper = document.querySelector('.team-slides-wrapper');
+            
+            // Add hover pause functionality for team slideshow
+            const teamSlideshowContainer = document.querySelector('.team-slideshow-container');
+            teamSlideshowContainer.addEventListener('mouseenter', pauseTeamSlideshow);
+            teamSlideshowContainer.addEventListener('mouseleave', resumeTeamSlideshow);
+        });
+        
+        function pauseTeamSlideshow() {
+            if (teamSlideshowWrapper) {
+                teamSlideshowWrapper.style.animationPlayState = 'paused';
+                teamSlideshowPaused = true;
+            }
+        }
+        
+        function resumeTeamSlideshow() {
+            if (teamSlideshowWrapper && teamSlideshowPaused) {
+                teamSlideshowWrapper.style.animationPlayState = 'running';
+                teamSlideshowPaused = false;
+            }
+        }
+        
+        // Job detail toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle job details
+            const detailToggles = document.querySelectorAll('.detail-toggle');
+            detailToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const icon = this.querySelector('.toggle-icon');
+                    icon.textContent = this.classList.contains('active') ? '-' : '+';
+                });
+            });
+            
+            // Job selection functionality
+            const jobListings = document.querySelectorAll('.job-listing');
+            let selectedJob = null;
+            
+            jobListings.forEach(listing => {
+                listing.addEventListener('click', function() {
+                    // Remove selection from all other jobs
+                    jobListings.forEach(job => job.classList.remove('selected'));
+                    
+                    // Add selection to clicked job
+                    this.classList.add('selected');
+                    selectedJob = this.dataset.job;
+                    
+                    // Update progress bar to show selection made
+                    updateProgressBar(25); // 25% for job selection
+                });
+            });
+            
+            function updateProgressBar(percentage) {
+                const progressCircle = document.getElementById('progress-circle');
+                const progressPercentage = document.getElementById('progress-percentage');
+                const progressText = document.querySelector('.progress-text');
+                const circularProgress = document.querySelector('.circular-progress');
+                
+                if (progressCircle && progressPercentage) {
+                    // Add pulse animation
+                    circularProgress.classList.add('updated');
+                    setTimeout(() => circularProgress.classList.remove('updated'), 600);
+                    
+                    // Calculate stroke-dashoffset for the percentage
+                    const circumference = 314.16; // 2 * PI * 50 (radius)
+                    const offset = circumference - (percentage / 100) * circumference;
+                    
+                    // Animate the circle
+                    progressCircle.style.strokeDashoffset = offset;
+                    progressPercentage.textContent = percentage + '%';
+                    
+                    // Update text based on progress
+                    if (progressText) {
+                        if (percentage === 25) {
+                            progressText.textContent = 'Position ausgewählt! Weiter zur Bewerbung';
+                            progressCircle.style.stroke = '#2196F3'; // Change color when selected
+                        } else if (percentage === 50) {
+                            progressText.textContent = 'Position ausgewählt! Weiter zur Bewerbung';
+                            progressCircle.style.stroke = '#2196F3'; // Change color when selected
+                        }
+                    }
+                }
             }
         });
     </script>
